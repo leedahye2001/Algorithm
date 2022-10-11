@@ -1,9 +1,11 @@
 # 더 맵게
+# heapq 이용
+
 import heapq
 def solution(scoville, K):
-    answer=0
+    
     heapq.heapify(scoville)
-
+    answer=0
 
     while scoville[0] < K:
         mix = heapq.heappop(scoville)+(heapq.heappop(scoville)*2)
