@@ -7,11 +7,13 @@ def solution(clothes):
         # Hash[type]로 종류 개수 가져왔음
         Hash[type] = Hash.get(type,0)+1
     
+    # 모든 경우의 수
     answer = 1
     for type in Hash:
-        answer*=Hash[type]
+        answer*=(Hash[type]+1)
     
-    
+    # 안입을 경우
+    return answer-1
     
         
     # answer = 0
