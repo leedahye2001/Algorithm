@@ -4,47 +4,39 @@
 using namespace std;
 
 int main(){
-    stack<int> S;
+    stack<int> X;
     string str;
+    // 명령의 수(스택의 수)
     int n;
-    cin>>n;
-    
-    for(int i=0;i<n;i++){
-    cin>>str;
+    cin >> n;
 
-    if(str=="push")
-    {
-        int x;
-        cin>>x;
-        S.push(x);
-    }
-    else if(str=="pop"){
-        if(S.empty()){
-            cout<<"-1"<<endl;
-        }
-        else{
-        cout<<S.top()<<endl;
-        S.pop();
-        }
-    }
-    else if(str=="top"){
-        if(S.empty()){
-            cout<<"-1"<<endl;
-        }
-        else{
-            cout<<S.top()<<endl;
-        }
-    }
-    else if(str=="empty"){
-        if(S.empty()){
-            cout<<"1"<<endl;
-        }
-        else{
-            cout<<"0"<<endl;
-        }
-    }
-    else if(str=="size"){
-    cout<<S.size()<<endl;
+    for (int i=0;i<n;i++){
+        cin >> str;
+        if(str=="push"){
+            int s;
+            cin>>s;
+            X.push(s);
+        } else if(str=="pop"){
+            if(X.empty()){
+                cout<<"-1"<<endl;
+            } else{
+                cout<<X.top()<<endl;
+                X.pop();
+            }
+        } else if(str=="size"){
+            cout<<X.size()<<endl;
+        } else if(str=="empty"){
+            if(X.empty()){
+                cout<<"1"<<endl;
+            } else{
+                cout<<"0"<<endl;
+            }
+        } else if(str=="top"){
+            if(X.empty()){
+                cout<<"-1"<<endl;
+            } else {
+                cout<<X.top()<<endl;
+            }
         }
     }
     return 0;
