@@ -1,57 +1,48 @@
-#include <iostream>
-#include <stack>
-#include <string>
+#include<iostream>
+#include<string>
+#include<stack>
 using namespace std;
 
-int main(void)
-{
-    while (1)
-    {
+int main() {
+        while(true){
         string str;
-        getline(cin, str);
-        if (str == ".")
-        {
-            break;
-        }
-        stack<char> st;
-        int k = 0;
-        for (int i = 0; i < str.length(); i++)
-        {
-            if (str[i] == 40 || str[i] == 91)
-            {
-                st.push(str[i]);
-            }
-            else if (str[i] == 41)
-            {
-                if (!st.empty() && st.top() == 40)
-                {
-                    st.pop();
-                }
-                else
-                {
-                    k = 1;
-                }
-            }
-            else if (str[i] == 93)
-            {
-                if (!st.empty() && st.top() == 91)
-                {
-                    st.pop();
-                }
-                else
-                {
-                    k = 1;
-                }
-            }
-        }
+        getline(cin, str);  // 한 줄 읽는 함수
 
-        if (st.empty() && k == 0)
-        {
-            printf("yes\n");
-        }
-        else
-        {
-            printf("no\n");
+            if(str=="."){
+                // cout<<"yes"<<endl;
+                break;
+            }
+            
+        stack<char> B;
+        bool flag=0; // 이거 생각해야됨
+
+        for(int i=0;i<str.length();i++){
+            char s=str[i];
+
+                if ((s=='(' || s=='[')) { // 여기 괄호(()) 두 개 안 넣으면 에러남
+                    B.push(s);
+                } else if(s==')'){
+                    if(!B.empty() && B.top()=='('){
+                        B.pop();
+                    } else {
+                        flag = 1;
+                        break;
+                    }
+                } else if(s==']'){
+                    if(!B.empty() && B.top()=='['){
+                        B.pop();
+                    } else {
+                        flag = 1;
+                        break;
+                    }
+                }
+            }
+            
+
+           if(flag==0 && B.empty()){
+            cout<<"yes"<<endl;
+           } else {
+            cout<<"no"<<endl;
+           }
         }
     }
-}
