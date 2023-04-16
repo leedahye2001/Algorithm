@@ -1,48 +1,52 @@
-#include <iostream>
-#include <queue>
+#include<iostream>
+#include<queue>
 using namespace std;
 
 int main(){
-    int test_case; 
+    int test_case;
     cin>>test_case;
     
+
     for(int i=0;i<test_case;i++){
+        // 문서의 개수, 궁금한 자료의 위치 (정수)
         int count;
-        int n,m;     //문서의 개수, 궁금한 문서 위치
+        int n, m;
         count=0;
         cin>>n>>m;
-        
-        priority_queue<int> pq;
-        queue< pair<int, int> > q;
+
+        priority_queue<int> Q;
+        queue< pair<int,int> > QI;
+
         
         for(int j=0;j<n;j++){
-            int imt;
-            cin>>imt; //중요도
-            
-            q.push({ j, imt });
-            pq.push(imt);
+            int importance;
+            cin>>importance;
+            // {인덱스,값}
+            QI.push(make_pair(j, importance));
+            Q.push(importance);
         }
+        
 
-        while(!q.empty()){
-            int loc = q.front().first;    //위치
-            int value = q.front().second; //값
-            q.pop();
-            
-            //값 비교
-            if(pq.top()==value){
-                pq.pop();
+        while(!QI.empty()){
+            int index=QI.front().first;
+            int value=QI.front().second;
+            QI.pop();
+
+            if(Q.top()==value){
+                Q.pop();
                 ++count;
 
-                if(loc==m){
+                if(index==m){
                     cout<<count<<endl;
                     break;
                 }
+            } else {
+                QI.push(make_pair(index, value));
             }
-            else
-                q.push({ loc, value });
         }
-        
+
     }
+
 
     return 0;
 }
